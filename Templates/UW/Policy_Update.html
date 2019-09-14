@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block style %}
+{% endblock %}
+{% block javascript %}
+
+  <script>
+    $("#id_form-0-policy_risk_id").change(function () {
+      var username = $(this).val();
+      $.ajax({
+        url: '/UW/get_risk/',
+        data: {
+          'username': username
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            alert("A user with this username already exists.");
+          }
+        }
+      });
+
+    });
+  </script>
+{% endblock %}
+
+{% block content %}
+    <div align="center">
+<form>
+    <input type="text" name ="Sid" placeholder="Enter Policy No" />
+    <input  type='submit' name="Search" value='Search' >
+    {{ message }}
+</form>
+        </div>
+
+	<form method="POST">
+		{% csrf_token %}
+        <div align="right">
+            <a  href='{% url "UnderWriter:CreateInsured" %}' class="btn btn-primary" role="button"> Insured Creation </a>
+        </div>
+        <div class="hdrin">
+            <h5>Policy Details</h5> <br>
+        </div>
+            <div class="in">
+            <div class="row">
+                    {{ Policyform.as_p }}
+                </div>
+                    </div>
+
+        <div class="hdrin">
+            <h5>Risk Details</h5> <br>
+        </div>
+        <div class="in">
+            {{ PolicyRishForm.non_form_errors.as_ul }}
+                {{ PolicyRishForm.management_form }}
+                <table id="formset" class="form">
+                {% for form in PolicyRishForm.forms %}
+                  {% if forloop.first %}
+                  <thead><tr>
+                    {% for field in form.visible_fields %}
+                    <th>{{ field.label|capfirst }}</th>
+                    {% endfor %}
+                  </tr></thead>
+                  {% endif %}
+                  <tr class="{% cycle row1 row2 %}">
+                  {% for field in form.visible_fields %}
+                    <td>
+                    {# Include the hidden fields in the form #}
+                    {% if forloop.first %}
+                      {% for hidden in form.hidden_fields %}
+                      {{ hidden }}
+                      {% endfor %}
+                    {% endif %}
+                      {{ field.errors.as_ul }}
+                      {{ field }}
+                    </td>
+                  {% endfor %}
+                  </tr>
+                {% endfor %}
+                </table>
+        </div>
+
+                <div align="right">
+                    <input type='submit' name="Create" value='Create' >
+
+        </div>
+        </div>
+    </form>
+{% endblock %}

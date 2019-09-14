@@ -1,0 +1,71 @@
+  .centered {
+  position: fixed; /* or absolute */
+  left: 50%;
+  width:auto;
+}
+.div{
+width:auto;
+}
+.div1{
+background-color: #e5eecc;
+padding: 25px;
+margin: 20px;
+width:auto;
+height:auto;
+}
+.rcorners2 {
+border-radius: 25px;
+border: 2px solid #73AD21;
+padding: 20px;
+background-color: #e5eecc;
+width:auto;
+height:auto;
+}
+.rcorners1 {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: lightgrey;
+width:auto;
+height:auto;
+}
+div.in {
+ border-radius: 15px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 5px;
+  outline-color: green;
+  background-color: lightblue;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  border: 2px solid green;
+}
+
+div.hdrin {
+border-radius: 15px;
+  margin-right: 20px;
+  margin-left: 5px;
+  outline-color: green;
+  background-color: lightgrey;
+  padding-top: 5px;
+  padding-right: 20px;
+  padding-left: 20px;
+  border: 2px solid green;
+  text-align: center;
+}
+
+.topnav {
+  overflow: hidden;
+}
+
+/* Style the topnav links */
+.topnav a {
+  display: block;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #ddd;
+}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div align="center">
+<form>
+    <input type="text" name ="Sid" placeholder="Enter Policy No" />
+    <input  type='submit' name="Search" value='Search' >
+</form>
+	<form method="POST">
+		{% csrf_token %}
+        <div class="hdrin">
+            <h5>Insured Details</h5> <br>
+        </div>
+		<div class="in" align="center">
+        {{ policyBill.as_p }}
+
+        </div>
+    <div align="right">
+            <button type="submit">Submit</button>
+        </div>
+        <div>
+            {{ message }}
+        </div>
+    </form>
+{% endblock %}

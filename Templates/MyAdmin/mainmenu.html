@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #00ff80;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 24px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.body{
+      background-color: #e5eecc;
+      padding: 25px;
+      margin: 20px;
+    }
+  header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+.big {
+   padding: 15px 15px 15px 32px;
+  font-size: 50px;
+  color: #818181;
+  display: block;
+  text-align: center;
+  font-size: 35px;
+}
+
+.big span:hover {
+  color: green;
+        background-color: red;
+}
+
+</style>
+    <h1 class="big">Main Page</h1>
+</head>
+<body class="body">
+{% load static %}
+{% if user.is_authenticated %}
+<div align="right">
+<a>Logged User : {{ user.get_username }}  </a>
+    <a href='{% url "MyAdmin:logout" %}' class="btn btn-primary" role="button"> Logout </a>
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href='{% url "Masters:ProductsMaster" %}' class="btn btn-primary" role="button">Prodct</a>
+        <a href='{% url "Masters:ProductRisk" %}' class="btn btn-primary" role="button">Products Risks</a>
+        <a href='{% url "Masters:createAgent" %}' class="btn btn-primary" role="button">Create Agent</a>
+        <a href='{% url "Masters:AgentCommision" %}' class="btn btn-primary" role="button">Agent Commision</a>
+        <a href='{% url "Masters:VehicleMaster" %}' class="btn btn-primary" role="button">Vehicle Master</a>
+        <a href='{% url "Masters:VehicleDepriciation" %}' class="btn btn-primary" role="button">Vehicle Depriciation</a>
+        <a href='{% url "Masters:NcbMaster" %}' class="btn btn-primary" role="button">NCB Master</a>
+        <a href='{% url "Masters:ClaimStatus" %}' class="btn btn-primary" role="button">ClaimStatus Master</a>
+        <a href='{% url "Masters:SurveyorMaster" %}' class="btn btn-primary" role="button">Surveyor Master</a>
+        <a href='{% url "Masters:ClaimsStatusList" %}' class="btn btn-primary" role="button">Claims Status List</a>
+
+    </div>
+
+    <div id="UWSidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeUWNav()">&times;</a>
+        <a href='{% url "UnderWriter:CreateInsured" %}' class="btn btn-primary" role="button">Insured Creation</a>
+        <a href='{% url "UnderWriter:PolicyCreate" %}' class="btn btn-primary" role="button">Motor Policy Creations</a>
+    </div>
+
+    <div id="ENDSidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeENDNav()">&times;</a>
+        <a href='{% url "UnderWriter:PolicyUpdate" %}' class="btn btn-primary" role="button">Motor Policy Update</a>
+    </div>
+
+        <div id="FINSidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeFINNav()">&times;</a>
+        <a href='{% url "UnderWriter:PolicyBillPay" %}' class="btn btn-primary" role="button">Policy Payment</a>
+    </div>
+
+    <div id="CLMSidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeCLMNav()">&times;</a>
+        <a href='{% url "Claims1:RaiseClaim" %}' class="btn btn-primary" role="button">Initiate Motor Claim</a>
+        <a href='{% url "Claims1:OpenClaimList" %}' class="btn btn-primary" role="button"> Submitted Claims List</a>
+        <a href='{% url "Claims1:InProcessClaimList" %}' class="btn btn-primary" role="button"> In Process Claims List</a>
+        <a href='{% url "Claims1:PendingSurvey" %}' class="btn btn-primary" role="button"> Pending Survey Claims List</a>
+        <a href='{% url "Claims1:PendingPayment" %}' class="btn btn-primary" role="button"> Pending Payment Claims List</a>
+
+
+    </div>
+
+<div class="big">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()"> Masters</span> <br> <br>
+    <span style="font-size:30px;cursor:pointer" onclick="openUWNav()"> UnderWriter</span> <br> <br>
+    <span style="font-size:30px;cursor:pointer" onclick="openENDNav()"> Endorsement</span> <br> <br>
+    <span style="font-size:30px;cursor:pointer" onclick="openCLMNav()">Claims</span> <br> <br>
+    <span style="font-size:30px;cursor:pointer" onclick="openFINNav()"> Finance</span> <br>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function openUWNav() {
+  document.getElementById("UWSidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+function openENDNav() {
+  document.getElementById("ENDSidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function openFINNav() {
+  document.getElementById("FINSidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function openCLMNav() {
+  document.getElementById("CLMSidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+function closeUWNav() {
+  document.getElementById("UWSidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+function closeENDNav() {
+  document.getElementById("ENDSidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+function closeCLMNav() {
+  document.getElementById("CLMSidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+</body>
+</html>

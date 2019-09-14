@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block style %}
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+{% endblock %}
+{% block content %}
+
+<h1 align="center"> Payment Pending Claims List</h1> <br>
+<table id="customers" style="width:100%">
+  <tr>
+    <th>Claim Number</th>
+    <th>Claim Status</th>
+      <th>Claimed Amount</th>
+      <th>Surveyor Amount </th>
+    <th>Proces</th>
+  </tr>
+{% for instance in object_list %}
+  <tr>
+    <td>{{ instance.claim }}</td>
+    <td>{{ instance.claim_status }}</td>
+      <td>{{ instance.amount_claimed }}</td>
+      <td>{{ instance.amount_setteled }}</td>
+    <td><a  href='{{ instance.get_absolute_url}}'>  Process Payment </a></td>
+  </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

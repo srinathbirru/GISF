@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+    {% block title %}
+        <title>
+            Inprocess Claims List
+        </title>
+     {% endblock %}
+<body>
+    {% block formname %}
+        <h3 align="center">Initiate New Claim</h3>
+    {% endblock %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+            <div align="center">
+    {{ ClaimForm.as_p }}
+            </div>
+        <div align="right">
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+{% endblock %}
+    <</body>
