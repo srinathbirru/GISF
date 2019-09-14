@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block style %}
+.divtest {
+  height: auto;
+}
+{% endblock %}
+    {% block title %}
+        <title>
+            Agent Create
+        </title>
+     {% endblock %}
+<body>
+
+    {% block formname %}
+        <h3 align="center">Agent Create Form</h3>
+    {% endblock %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="divtest" align="center">
+        {{ Aform.as_p }}
+   </div>
+
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
+    <</body>

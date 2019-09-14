@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+	<form method="POST">
+		{% csrf_token %}
+        <div class="hdrin">
+            <h5>Claim Processing</h5> <br>
+        </div>
+		<div class="in" align="center">
+        {{ ClaimForm.as_p }}
+
+        </div>
+        <div class="hdrin">
+            <h5>Surveyor Details</h5> <br>
+        </div>
+        <div class="in">
+
+                   {{ claimSurveyForm.as_p }}
+        </div>
+         <div class="hdrin">
+            <h5>Claim Documents Details</h5> <br>
+        </div>
+        <div class="in">
+            <div class="row">
+                    {{ formset.non_form_errors.as_ul }}
+                {{ formset.management_form }}
+                <table id="formset" class="form">
+                {% for form in formset.forms %}
+                  {% if forloop.first %}
+                  <thead><tr>
+                    {% for field in form.visible_fields %}
+                    <th>{{ field.label|capfirst }}</th>
+                    {% endfor %}
+                  </tr></thead>
+                  {% endif %}
+                  <tr class="{% cycle row1 row2 %}">
+                  {% for field in form.visible_fields %}
+                    <td>
+                    {# Include the hidden fields in the form #}
+                    {% if forloop.first %}
+                      {% for hidden in form.hidden_fields %}
+                      {{ hidden }}
+                      {% endfor %}
+                    {% endif %}
+                      {{ field.errors.as_ul }}
+                      {{ field }}
+                    </td>
+                  {% endfor %}
+                  </tr>
+                {% endfor %}
+                </table>
+             </div>
+    </div>
+                <div align="right">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+{% endblock %}

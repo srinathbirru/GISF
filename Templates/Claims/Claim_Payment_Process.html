@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+	<form method="POST">
+		{% csrf_token %}
+        <div class="hdrin">
+            <h5>Claim Payment Processing</h5> <br>
+        </div>
+		<div class="in" align="center">
+        {{ ClmPaymentForm.as_p }}
+
+          <div align="right">
+            <button type="submit">Submit</button>
+        </div>
+           <div>
+               {{ message }}
+           </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'Common/image.css' %}" />
+    <style>
+
+.body{
+      background-color: #e5eecc;
+      padding: 25px;
+      margin: 20px;
+    }
+
+.bg-img {
+{% load static %}
+  /* The image used */
+  background-image: url("{% static '/images/car-insurance.jpg' %}");
+  min-height: 480px;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+</style>
+</head>
+<body class="body">
+<div class="bg-img">
+<nav class="navbar navbar-expand-sm bg-greet navbar-yellow">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#"> <h1>GISF Pvt Ltd</h1> </a>
+    <br>
+    {% if user.is_authenticated %}
+    <div>
+    <a>Welcome : {{ user.get_username }}  </a>
+    <a href='{% url "MyAdmin:logout" %}' class="btn btn-primary" role="button"> Logout </a>
+    </div>
+    {% else %}
+    <a href='{% url "MyAdmin:About" %}' class="btn btn-success" role="button"> AboutUs </a> <br><br>
+    <a href='{% url "MyAdmin:clogin" %}' class="btn btn-success" role="button"> Login </a><br><br>
+    <a href='{% url "MyAdmin:register" %}' class="btn btn-success" role="button"> Sign-up </a>
+    {% endif %}
+
+</div>
+</body>
+</html>

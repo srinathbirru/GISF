@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+   {% block style %}
+{% endblock %}
+    </style>
+<head class="container">
+{% load static %}
+    {% block title %}
+{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'Common/bg-frames.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Common/fieldPropertes.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'Common/image.css' %}" />
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.js'%}"></script>
+
+</head>
+    <div class="row">
+        <div class="col">
+<img class="imgSqrWithBorder" src="{% static 'images/InsureLogo.jpg' %}" alt="Car">
+    <h2>G I S F</h2>
+    {% if user.is_authenticated %}
+            </div>
+        <div class="col">
+    <h1>GISF Solutions</h1>
+        </div>
+        <div>
+
+<div align="right">
+<a>Logged User : {{ user.get_username }}  </a>
+    <a href='{% url "MyAdmin:logout" %}' class="btn btn-primary" role="button"> Logout </a>
+    <a href='{% url "MyAdmin:mainmenu" %}' class="btn btn-primary" role="button"> MainMenu </a>
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}
+        </div>
+</div>
+</div>
+   <body class="div1">
+
+    <div class="rcorners1">
+   {% block formname %}
+    {% endblock %}
+    <div class="rcorners1">
+    <div class="rcorners2" >
+    {% block content %}
+     {% endblock %}
+    </div>
+    </div>
+
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    {% block javascript %}{% endblock %}
+</body>
+</html>

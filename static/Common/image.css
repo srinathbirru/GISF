@@ -1,0 +1,30 @@
+.imgSqrWithBorder {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+imgSqrWithBorder:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+.bg {
+background-image: url("{% static '/images/car-insurance.jpg' %}");
+  height: 100%;
+  width:100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+ body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.body{
+      background-color: #e5eecc;
+      padding: 25px;
+      margin: 20px;
+    }
